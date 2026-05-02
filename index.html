@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CaloriX — Smart Nutrition Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="bg-fx">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="orb o4"></div>
+</div>
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="nav-logo">CaloriX</div>
+  <div class="nav-links">
+    <a href="#cara-kerja">Cara Kerja</a>
+    <a href="#kalkulator">Kalkulator</a>
+    <a href="#fitur">Fitur</a>
+    <a href="#testimoni">Testimoni</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('kalkulator').scrollIntoView({behavior:'smooth'})">Mulai Gratis</button>
+</nav>
+
+<section class="hero">
+  <div class="floating-elements">
+    <div class="floater f1"><span class="dot-green"></span> BMI Normal ✓</div>
+    <div class="floater f2"><span class="dot-cyan"></span> 2.150 kkal / hari</div>
+    <div class="floater f3"><span class="dot-amber"></span> Target: −5 kg 🎯</div>
+    <div class="floater f4"><span class="dot-violet"></span> Protein: 162 g</div>
+    <div class="floater f5"><span class="dot-pink"></span> 87 hari streak 🔥</div>
+  </div>
+  <div class="hero-eyebrow"><span class="pulse-dot"></span> Platform Gizi Cerdas #1 Indonesia</div>
+  <h1>Kenali Tubuhmu,<br>Raih <em class="gradient-text">Versi Terbaik</em></h1>
+  <p class="hero-sub">Kalkulator kalori & nutrisi berbasis sains yang membantu kamu memahami kebutuhan gizi harian secara personal dan akurat.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('kalkulator').scrollIntoView({behavior:'smooth'})">⚡ Hitung Kalori Sekarang</button>
+    <button class="btn-ghost" onclick="document.getElementById('cara-kerja').scrollIntoView({behavior:'smooth'})">Pelajari Lebih →</button>
+  </div>
+  <div class="tag-row">
+    <span class="tag hl">✓ Gratis Selamanya</span>
+    <span class="tag">Mifflin-St Jeor</span>
+    <span class="tag">BMI + BMR + TDEE</span>
+    <span class="tag">Makronutrien Detail</span>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-cell"><div class="stat-num" data-count="50000">0</div><div class="stat-label">Pengguna Aktif</div></div>
+  <div class="stat-cell"><div class="stat-num" data-count="98">0</div><div class="stat-label">% Akurasi</div></div>
+  <div class="stat-cell"><div class="stat-num" data-count="12">0</div><div class="stat-label">Parameter</div></div>
+  <div class="stat-cell"><div class="stat-num" data-count="4800">0</div><div class="stat-label">Database Makanan</div></div>
+</div>
+
+<section class="section" id="cara-kerja">
+  <div class="section-center">
+    <span class="section-tag">Cara Kerja</span>
+    <h2 class="section-title">3 Langkah Mudah<br>Menuju Hidup Sehat</h2>
+    <p class="section-sub">Tidak perlu jadi ahli gizi. CaloriX memproses semua perhitungan ilmiah secara otomatis.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-icon">📋</div><div class="step-title">Isi Data Diri</div><div class="step-desc">Masukkan usia, tinggi, berat badan, dan jenis kelaminmu. Hanya butuh 30 detik.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-icon">🧠</div><div class="step-title">Sistem Analisis</div><div class="step-desc">Kami menghitung BMR, TDEE, BMI, dan distribusi makronutrien ideal secara real-time.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-icon">🎯</div><div class="step-title">Dapat Rencana Personal</div><div class="step-desc">Terima target kalori harian + tips nutrisi yang disesuaikan dengan tujuan tubuhmu.</div></div>
+  </div>
+</section>
+
+<section class="section" id="kalkulator" style="padding-top:40px">
+  <div class="section-center">
+    <span class="section-tag">Kalkulator</span>
+    <h2 class="section-title">Hitung Kebutuhanmu<br>Sekarang, Gratis</h2>
+  </div>
+  <div class="calc-wrap">
+    <div class="card">
+      <div class="card-top-line"></div>
+      <h3 style="font-weight:800;font-size:20px;margin-bottom:24px">📝 Data Pribadi</h3>
+      <div class="field">
+        <label>Jenis Kelamin</label>
+        <div class="gender-row">
+          <button class="gpill on" id="g-male" onclick="setG('male')">♂ Pria</button>
+          <button class="gpill" id="g-female" onclick="setG('female')">♀ Wanita</button>
+        </div>
+      </div>
+      <div class="field"><label>📅 Usia (tahun)</label><input type="number" id="age" placeholder="25" min="10" max="100"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="field"><label>📏 Tinggi (cm)</label><input type="number" id="height" placeholder="170" min="100" max="250"></div>
+        <div class="field"><label>⚖️ Berat (kg)</label><input type="number" id="weight" placeholder="65" min="20" max="300"></div>
+      </div>
+      <div class="field">
+        <label>🏃 Aktivitas Harian</label>
+        <select id="activity">
+          <option value="1.2">😴 Sedentari — Tidak olahraga</option>
+          <option value="1.375">🚶 Ringan — 1–3x seminggu</option>
+          <option value="1.55" selected>🏃 Moderat — 3–5x seminggu</option>
+          <option value="1.725">🏋️ Aktif — 6–7x seminggu</option>
+          <option value="1.9">🔥 Sangat Aktif — Atlet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>🎯 Tujuan Utama</label>
+        <select id="goal">
+          <option value="lose">🥗 Turunkan Berat Badan</option>
+          <option value="maintain" selected>⚖️ Jaga Berat Badan</option>
+          <option value="gain">💪 Tambah Massa Otot</option>
+        </select>
+      </div>
+      <button class="btn-calc" onclick="calculateAndUpdate()">⚡ Analisis Sekarang</button>
+    </div>
+
+    <div>
+      <div id="placeholder" class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 36px;gap:16px;min-height:400px">
+        <div class="pulse-icon" style="font-size:64px">🥗</div>
+        <div style="font-weight:700;font-size:20px">Siap Menghitung?</div>
+        <div style="font-size:14px;color:var(--muted)">Isi data dirimu di sebelah kiri lalu klik <strong style="color:var(--cyan)">Analisis Sekarang</strong></div>
+      </div>
+
+      <div id="results">
+        <div class="card result-card">
+          <div class="card-top-line" style="background:linear-gradient(90deg,var(--lime),var(--cyan))"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px">Kebutuhan Kalori Harian (TDEE)</div>
+          <div class="result-big" id="tdee-num">—</div>
+          <div style="font-size:13px;color:var(--muted)">kkal / hari</div>
+          <div class="goal-row">
+            <div class="goal-pill"><span class="gp-emoji">🥗</span><div class="gp-label">Turun Berat</div><div class="gp-num lose" id="gc-lose">—</div><div style="font-size:10px;color:var(--muted)">kkal</div></div>
+            <div class="goal-pill"><span class="gp-emoji">⚖️</span><div class="gp-label">Pertahankan</div><div class="gp-num maintain" id="gc-maint">—</div><div style="font-size:10px;color:var(--muted)">kkal</div></div>
+            <div class="goal-pill"><span class="gp-emoji">💪</span><div class="gp-label">Naik Massa</div><div class="gp-num gain" id="gc-gain">—</div><div style="font-size:10px;color:var(--muted)">kkal</div></div>
+          </div>
+        </div>
+
+        <div class="card result-card">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px">🥩 Makronutrien Harian</div>
+          <div class="mbar-wrap"><div class="mb mb-p" id="bar-p" style="width:0%"></div><div class="mb mb-f" id="bar-f" style="width:0%"></div><div class="mb mb-c" id="bar-c" style="width:0%"></div></div>
+          <div class="macro-3">
+            <div class="mcell p"><div class="mc-n">Protein</div><div class="mc-v"><span id="m-p">0</span>g</div><div class="mc-s">30%</div></div>
+            <div class="mcell f"><div class="mc-n">Lemak</div><div class="mc-v"><span id="m-f">0</span>g</div><div class="mc-s">25%</div></div>
+            <div class="mcell c"><div class="mc-n">Karbo</div><div class="mc-v"><span id="m-c">0</span>g</div><div class="mc-s">45%</div></div>
+          </div>
+        </div>
+
+        <div class="card result-card">
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:2px">📊 BMI Kamu</div><div class="bmi-big" id="bmi-num">—</div><div id="bmi-cat" style="font-size:14px;font-weight:600"></div></div>
+            <div style="flex:1;font-size:13px;color:var(--muted);padding-top:18px" id="bmi-info"></div>
+          </div>
+          <div class="bmi-track"><div class="bmi-thumb" id="bmi-thumb" style="left:5%"></div></div>
+          <div class="bmi-lbs"><span>Kurus</span><span>Normal</span><span>Gemuk</span><span>Obesitas</span></div>
+        </div>
+
+        <div class="card result-card">
+          <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:14px">💡 Tips Personal</div>
+          <div class="tip-grid" id="tips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px" id="tracker">
+  <div class="tracker-wrap">
+    <div>
+      <span class="section-tag">Tracker Makanan</span>
+      <h2 class="section-title">Pantau Asupan<br>Setiap Hari</h2>
+      <p class="section-sub" style="margin-bottom:24px">Dengan referensi 4.800+ database makanan Indonesia, tracking harianmu jadi lebih mudah dan akurat.</p>
+      <div class="feature-buttons">
+        <button class="tag feature-tag" id="scanBarcodeBtn">📷 Barcode Scanner</button>
+        <button class="tag feature-tag" id="weeklyReportBtn">📊 Laporan Mingguan</button>
+        <button class="tag feature-tag" id="downloadPdfBtn">📄 Download PDF</button>
+        <button class="tag feature-tag" id="resetDataBtn" style="background:rgba(239,68,68,.1); border-color:rgba(239,68,68,.3); color:#f87171;">🔄 Reset Semua Data</button>
+      </div>
+    </div>
+    
+    <div class="food-card">
+      <div class="food-card-header">
+        <span class="food-card-title">📋 Log Hari Ini</span>
+        <span class="food-card-badge" id="food-count-badge">0 makanan</span>
+      </div>
+      <div id="food-list-container"></div>
+
+      <!-- FORM TAMBAH MAKANAN CUSTOM - YANG BENER -->
+      <div class="add-food-form">
+        <h4>➕ Tambah Makanan Custom</h4>
+        <div class="form-row">
+          <input type="text" id="food-name" placeholder="Nama makanan" value="">
+          <input type="number" id="food-cal" placeholder="Kalori (kkal)" value="">
+        </div>
+        <div class="form-row">
+          <div style="flex:1">
+            <label style="font-size:10px; color:var(--muted); display:block; margin-bottom:4px;">🍗 Protein (g)</label>
+            <input type="number" id="food-protein" placeholder="0" value="0" step="1">
+          </div>
+          <div style="flex:1">
+            <label style="font-size:10px; color:var(--muted); display:block; margin-bottom:4px;">🍚 Karbo (g)</label>
+            <input type="number" id="food-carbs" placeholder="0" value="0" step="1">
+          </div>
+          <div style="flex:1">
+            <label style="font-size:10px; color:var(--muted); display:block; margin-bottom:4px;">🧈 Lemak (g)</label>
+            <input type="number" id="food-fat" placeholder="0" value="0" step="1">
+          </div>
+        </div>
+        <button class="btn-add-food" onclick="addCustomFood()">✅ Tambahkan ke Log Hari Ini</button>
+      </div>
+
+      <div class="ring-wrap">
+        <div class="progress-ring">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/>
+            <circle id="calorie-progress" cx="60" cy="60" r="52" fill="none" stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" transform="rotate(-90 60 60)"/>
+            <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#84cc16"/></linearGradient></defs>
+            <text x="60" y="56" text-anchor="middle" fill="#f0f6ff" font-size="16" font-weight="800" id="total-calories-display">748</text>
+            <text x="60" y="70" text-anchor="middle" fill="#64748b" font-size="9">kkal</text>
+          </svg>
+        </div>
+        <div class="progress-text"><span id="calorie-percentage-text">70</span>% dari target <strong id="target-calories-display">2150</strong> kkal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<div id="barcodeModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>📷 Scan Barcode Makanan</h3>
+    <p>Arahkan kamera ke barcode kemasan makanan</p>
+    <div id="barcode-reader" style="width:100%; max-width:500px;"></div>
+    <div id="barcode-result"></div>
+  </div>
+</div>
+
+<div id="reportModal" class="modal">
+  <div class="modal-content modal-large">
+    <span class="modal-close report-close">&times;</span>
+    <h3>📊 Laporan Mingguan</h3>
+    <canvas id="weeklyChart" style="width:100%; max-height:300px;"></canvas>
+    <div id="weeklyStats" style="margin-top:16px; font-size:13px; color:var(--muted)"></div>
+  </div>
+</div>
+
+<section class="section" id="fitur">
+  <div class="section-center">
+    <span class="section-tag">Fitur Unggulan</span>
+    <h2 class="section-title">Semua yang Kamu Butuhkan<br>dalam Satu Platform</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-ico" style="background:rgba(6,182,212,.12)">🧪</div><div class="feat-title">Formula Ilmiah</div><div class="feat-desc">Mifflin-St Jeor untuk BMR, dengan penyesuaian aktivitas terbaru.</div></div>
+    <div class="feat"><div class="feat-ico" style="background:rgba(132,204,22,.12)">📊</div><div class="feat-title">Analisis Makronutrien</div><div class="feat-desc">Distribusi protein, lemak, dan karbohidrat optimal berdasarkan tujuan.</div></div>
+    <div class="feat"><div class="feat-ico" style="background:rgba(245,158,11,.12)">🎯</div><div class="feat-title">Target Personal</div><div class="feat-desc">Kalori rekomendasi berbeda untuk turun berat, menjaga, atau menambah massa.</div></div>
+    <div class="feat"><div class="feat-ico" style="background:rgba(139,92,246,.12)">📈</div><div class="feat-title">BMI & Kategori</div><div class="feat-desc">Visualisasi BMI dengan gauge meter dan interpretasi kesehatan WHO.</div></div>
+    <div class="feat"><div class="feat-ico" style="background:rgba(236,72,153,.12)">🍽️</div><div class="feat-title">Database Makanan</div><div class="feat-desc">4.800+ data makanan Indonesia dan internasional siap digunakan.</div></div>
+    <div class="feat"><div class="feat-ico" style="background:rgba(6,182,212,.08)">💡</div><div class="feat-title">Tips Berbasis Data</div><div class="feat-desc">Saran nutrisi dan gaya hidup yang disesuaikan dengan profilmu secara dinamis.</div></div>
+  </div>
+</section>
+
+<section class="section" id="testimoni">
+  <div class="section-center">
+    <span class="section-tag">Testimoni</span>
+    <h2 class="section-title">Mereka Sudah<br>Merasakannya</h2>
+    <p class="section-sub">Ribuan pengguna telah mencapai tujuan kesehatan mereka bersama CaloriX.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi"><div class="quote-icon">"</div><div class="testi-stars">★★★★★</div><div class="testi-text">"Dalam 3 bulan pakai CaloriX, berat saya turun 8 kg tanpa diet ekstrem. Calculatornya sangat akurat!"</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(6,182,212,.2);color:var(--cyan)">RD</div><div><div class="testi-name">Rizky D.</div><div class="testi-role">Mahasiswa, 22 tahun</div></div></div></div>
+    <div class="testi"><div class="quote-icon">"</div><div class="testi-stars">★★★★★</div><div class="testi-text">"Info makronutriennya sangat detail. Akhirnya bisa hitung kebutuhan protein dengan tepat buat muscle gain."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(139,92,246,.2);color:var(--violet)">AP</div><div><div class="testi-name">Andi P.</div><div class="testi-role">Fitness Trainer, 28 tahun</div></div></div></div>
+    <div class="testi"><div class="quote-icon">"</div><div class="testi-stars">★★★★★</div><div class="testi-text">"Interface-nya keren banget, gampang dipakai, dan hasilnya komprehensif. Cocok buat pemula!"</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(236,72,153,.2);color:var(--pink)">SW</div><div><div class="testi-name">Sari W.</div><div class="testi-role">Ibu Rumah Tangga, 34 tahun</div></div></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="cta-box">
+    <div class="pulse-icon" style="font-size:48px;margin-bottom:16px">🚀</div>
+    <div class="cta-title">Mulai Perjalananmu<br>Hari Ini</div>
+    <div class="cta-sub">Gratis selamanya. Tidak perlu daftar. Hitung dalam 30 detik.</div>
+    <button class="btn-primary" style="font-size:16px;padding:18px 48px" onclick="document.getElementById('kalkulator').scrollIntoView({behavior:'smooth'})">⚡ Hitung Sekarang — Gratis</button>
+    <div style="margin-top:20px;font-size:13px;color:var(--muted)">✓ Tanpa iklan &nbsp;·&nbsp; ✓ Tanpa daftar &nbsp;·&nbsp; ✓ 100% akurat</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-logo">CaloriX</div><div class="footer-desc">Platform kalkulator kalori dan nutrisi berbasis sains untuk membantu kamu mencapai tujuan kesehatan secara personal dan efektif.</div><div class="footer-badges"><div class="fbadge">🔒 Aman</div><div class="fbadge">⚡ Gratis</div><div class="fbadge">🧪 Saintifik</div></div></div>
+    <div class="footer-col"><div class="footer-col-title">Fitur</div><a href="#">Kalkulator Kalori</a><a href="#">BMI Checker</a><a href="#">Tracker Makanan</a><a href="#">Rencana Diet</a></div>
+    <div class="footer-col"><div class="footer-col-title">Panduan</div><a href="#">Cara Hitung BMR</a><a href="#">Apa itu TDEE?</a><a href="#">Makronutrien</a><a href="#">Tips Nutrisi</a></div>
+    <div class="footer-col"><div class="footer-col-title">Tentang</div><a href="#">Tentang Kami</a><a href="#">Tim Pengembang</a><a href="#">Kontak</a><a href="#">Privasi</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2025 CaloriX · Dibuat untuk Promosi Jurusan 🎓</div><div style="font-size:12px;color:var(--muted)">Data bersifat estimasi — konsultasikan dengan ahli gizi untuk saran medis</div></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
